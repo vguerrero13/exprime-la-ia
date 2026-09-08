@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sesión 01 · Qué es la IA y Cómo le Hablo · Taller Exprime la IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+ --navy:#001D45; --navy2:#0B1B33; --navy3:#0E2A52;
+ --blue:#1D67CD; --blue-tint:#EAF1FC;
+ --amber:#F5A524; --amber-dark:#B97400;
+ --ink:#101828; --muted:#5B6472; --line:#E7EAF0; --paper:#F7F9FC; --white:#fff;
+ --sbw:278px; --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:var(--ink);background:#fff;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+b,strong{color:var(--navy);font-weight:700}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sbw);height:100vh;overflow-y:auto;background:var(--navy);color:#fff;padding:26px 20px 20px;z-index:20}
+.main{margin-left:var(--sbw)}
+.pagewrap{max-width:760px;margin:0 auto;padding:0 48px}
+
+.sb-logo-img{display:block;width:148px;height:auto}
+.sb-tag{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#7f93b8;font-weight:700;margin-top:4px}
+.sb-nav{margin-top:30px;display:flex;flex-direction:column;gap:3px}
+.sb-item{display:block;padding:10px 12px;border-radius:9px;color:#c8d4e8}
+.sb-item .num{font-family:"Sora";font-size:11px;font-weight:700;color:#6f85ad;letter-spacing:.5px}
+.sb-item .ttl{font-family:"Sora";font-size:13.5px;font-weight:700;line-height:1.3;margin-top:2px;color:#dbe4f2}
+.sb-item .sub{font-size:11px;color:#7f93b8;margin-top:2px;line-height:1.3}
+.sb-item.active{background:var(--navy3)}
+.sb-item.active .num{color:var(--amber)}
+.sb-item.active .ttl{color:#fff}
+a.sb-item:hover{background:#0F284D}
+.sb-item.locked{opacity:.5;cursor:default}
+.sb-item.locked .tag{display:inline-block;margin-top:5px;font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#7f93b8;border:1px solid #2b3c5c;border-radius:20px;padding:2px 8px}
+.sb-sub{margin:2px 0 10px 12px;padding-left:12px;border-left:1.5px solid #223759;display:flex;flex-direction:column;gap:1px}
+.sb-sub a{display:block;padding:6px 10px;font-size:12.5px;color:#a9bad6;border-radius:6px}
+.sb-sub a:hover{background:#0F284D;color:#fff}
+.sb-foot{margin-top:28px;padding-top:16px;border-top:1px solid #223759;font-size:11px;color:#5c6f8f}
+
+.navtoggle{display:none;position:fixed;top:14px;left:14px;z-index:30;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-family:"Sora";font-weight:700;font-size:13px;cursor:pointer}
+.sb-overlay{display:none}
+
+.pagehead{padding:52px 0 30px}
+.crumb{font-family:"Sora";font-size:11.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+h1{font-family:"Sora";font-weight:800;font-size:clamp(26px,3.8vw,36px);line-height:1.14;letter-spacing:-.6px;color:var(--navy);margin-bottom:12px}
+.dek{font-size:18px;line-height:1.55;color:#3a4553;max-width:62ch}
+.metarow{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.metachip{font-size:12px;font-weight:600;color:var(--navy);background:var(--blue-tint);border-radius:20px;padding:5px 12px}
+
+section{padding:34px 0;border-top:1px solid var(--line)}
+.pagehead + section{border-top:none}
+h2{font-family:"Sora";font-weight:800;font-size:24px;line-height:1.2;letter-spacing:-.4px;color:var(--navy);margin-bottom:10px}
+h3{font-family:"Sora";font-weight:700;font-size:18px;line-height:1.25;color:var(--navy);margin:26px 0 10px}
+h4{font-family:"Sora";font-weight:700;font-size:15.5px;color:var(--navy);margin-bottom:5px}
+.eyebrow{font-family:"Sora";font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+p{margin-bottom:13px}
+p.lead{font-size:17px;line-height:1.55;color:#33404f}
+.acc{color:var(--amber-dark);font-weight:700}
+
+.feats{display:flex;flex-direction:column;gap:2px;margin:18px 0}
+.feat{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.feats.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.feats.grid .feat{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;background:var(--paper)}
+.feat.on{background:var(--navy);border-radius:var(--radius);padding:14px 16px;border:none}
+.feat.on h4,.feat.on p{color:#fff}
+.feat.on p{color:#c8d4e8}
+.badge{width:38px;height:38px;border-radius:9px;background:var(--blue-tint);display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto}
+.feat.on .badge{background:rgba(255,255,255,.12)}
+.feat h4{margin-bottom:3px}
+.feat p{font-size:13.8px;color:#4a5564;margin-bottom:0;line-height:1.5}
+
+/* callout genérico */
+.callout{display:flex;gap:12px;background:var(--blue-tint);border-radius:var(--radius);padding:14px 16px;margin:18px 0}
+.callout.dark{background:var(--navy);color:#fff}
+.callout.dark p{color:#c8d4e8}
+.callout.dark b{color:#fff}
+.callout.warn{background:#FDF0EF}
+.callout.warn b{color:#8a2b20}
+.callout .ic{font-size:17px;flex:0 0 auto}
+.callout p{margin:0;font-size:14px;line-height:1.55}
+
+/* callout de humor / analogía — la firma de esta guía */
+.bit{display:flex;gap:12px;background:#FFFBF0;border:1.5px dashed var(--amber);border-radius:var(--radius);padding:14px 16px;margin:18px 0}
+.bit .ic{font-size:19px;flex:0 0 auto}
+.bit .lb{font-family:"Sora";font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--amber-dark);margin-bottom:4px}
+.bit p{margin:0;font-size:14.5px;line-height:1.58;color:#4a3c10}
+.bit b{color:#2a2000}
+
+.tw{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:var(--radius)}
+table{width:100%;border-collapse:collapse;font-size:13.8px;min-width:520px}
+th{background:var(--paper);font-family:"Sora";font-weight:700;font-size:11px;letter-spacing:.6px;text-transform:uppercase;text-align:left;padding:11px 14px;color:var(--navy);border-bottom:1px solid var(--line)}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45;color:#3f4a59}
+td:first-child{font-weight:600;color:var(--navy)}
+tr:last-child td{border-bottom:none}
+
+.code{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:16px 0;background:#fff}
+.code .bar{background:var(--navy2);padding:9px 14px;display:flex;align-items:center;gap:7px}
+.code .dot{width:8px;height:8px;border-radius:50%}
+.code .dot.r{background:#FF5F57}.code .dot.y{background:#FEBC2E}.code .dot.g{background:#28C840}
+.code .lbl{margin-left:8px;font-family:"Sora";font-size:11.5px;color:#8fa3c4;font-weight:600}
+.code button.copy{margin-left:auto;background:none;border:1px solid #2b3c5c;color:#c8d4e8;font-family:"Sora";font-size:10.5px;font-weight:700;letter-spacing:.5px;padding:4px 11px;border-radius:6px;cursor:pointer}
+.code button.copy:hover{background:#152847}
+.code button.copy.ok{background:#1f7a4d;border-color:#1f7a4d;color:#fff}
+.code pre{padding:16px 18px;font-family:"JetBrains Mono",Consolas,ui-monospace,monospace;font-size:12.8px;line-height:1.62;white-space:pre-wrap;word-wrap:break-word;color:#1b2430;background:var(--paper);margin:0}
+
+details.tec{border:1px solid var(--line);border-radius:var(--radius);margin:9px 0;background:#fff;overflow:hidden}
+details.tec summary{cursor:pointer;list-style:none;padding:13px 16px;display:flex;align-items:center;gap:11px;font-family:"Sora";font-weight:700;font-size:14.5px;color:var(--navy)}
+details.tec summary::-webkit-details-marker{display:none}
+details.tec .chev{margin-left:auto;font-size:13px;color:var(--blue);transition:transform .15s}
+details.tec[open] .chev{transform:rotate(90deg)}
+details.tec .idx{font-family:"Sora";font-size:11px;color:var(--muted);background:var(--paper);border-radius:20px;padding:2px 9px}
+details.tec .bd{padding:2px 16px 16px}
+details.tec .bd p{font-size:14px;margin-bottom:9px}
+details.tec .bd p:last-child{margin-bottom:0}
+
+.ck{list-style:none;margin:16px 0}
+.ck li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer;user-select:none}
+.ck li:last-child{border-bottom:none}
+.ck .bx{flex:0 0 auto;width:19px;height:19px;border:1.5px solid var(--blue);border-radius:5px;margin-top:2px;display:grid;place-items:center;font-size:11px;font-weight:800;background:#fff}
+.ck li.done .bx{background:var(--amber);border-color:var(--amber)}
+.ck li.done .bx::after{content:"✓"}
+.ck li.done .tx{opacity:.45;text-decoration:line-through}
+.ck .tx{font-size:14.5px;line-height:1.5}
+.ck .tx b{display:block;font-family:"Sora";font-weight:700;font-size:15px;color:var(--navy)}
+
+.steps{counter-reset:st;margin:18px 0}
+.stp{display:grid;grid-template-columns:34px 1fr;gap:13px;padding:11px 0;border-bottom:1px solid var(--line)}
+.stp:last-child{border-bottom:none}
+.stp .n{counter-increment:st;width:28px;height:28px;border-radius:50%;background:var(--blue-tint);color:var(--blue);font-family:"Sora";font-weight:800;font-size:12.5px;display:grid;place-items:center}
+.stp .n::before{content:counter(st)}
+.stp p{margin-bottom:0;font-size:14.5px}
+.stp b{display:block;font-family:"Sora";font-size:15px;margin-bottom:2px}
+
+footer{padding:34px 0 60px;color:var(--muted);font-size:12.5px}
+footer b{color:var(--navy)}
+
+@media(max-width:900px){
+ .sidebar{transform:translateX(-100%);transition:transform .2s;border-right:1px solid #223759}
+ .sidebar.open{transform:translateX(0)}
+ .main{margin-left:0}
+ .navtoggle{display:block}
+ .sb-overlay.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:15}
+ .pagewrap{padding:0 22px}
+ .feats.grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<button class="navtoggle" onclick="document.querySelector('.sidebar').classList.toggle('open');document.querySelector('.sb-overlay').classList.toggle('show')">☰ Menú</button>
+<div class="sb-overlay" onclick="document.querySelector('.sidebar').classList.remove('open');this.classList.remove('show')"></div>
+
+<nav class="sidebar">
+ <a href="index.html"><img class="sb-logo-img" src="data:image/png;base64,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" alt="GrowUp"></a>
+ <div class="sb-tag">Taller Exprime la IA</div>
+ <div class="sb-nav">
+  <a class="sb-item active" href="#top">
+   <div class="num">SESIÓN 01</div>
+   <div class="ttl">¿Qué es la IA y cómo le hablo?</div>
+   <div class="sub">El mapa completo</div>
+  </a>
+  <div class="sb-sub">
+   <a href="#que-es">Qué es y cómo funciona</a>
+   <a href="#zoologico">Panorama de herramientas</a>
+   <a href="#formas">Formas de usarla</a>
+   <a href="#prompting">Cómo formular buenos prompts</a>
+   <a href="#proyecto">Tu primer buen proyecto</a>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 02</div>
+   <div class="ttl">Tu asistente de comunicación diaria</div>
+   <div class="sub">Correos y mensajes</div>
+   <div class="tag">Próximamente</div>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 03</div>
+   <div class="ttl">Genera imágenes y video con IA</div>
+   <div class="sub">De texto a visual</div>
+   <div class="tag">Próximamente</div>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 04</div>
+   <div class="ttl">Complementos de IA en tus herramientas de siempre</div>
+   <div class="sub">Office y navegador</div>
+   <div class="tag">Próximamente</div>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 05</div>
+   <div class="ttl">Pensar y decidir mejor con IA</div>
+   <div class="sub">Decisiones con criterio</div>
+   <div class="tag">Próximamente</div>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 06</div>
+   <div class="ttl">Investiga y verifica con IA</div>
+   <div class="sub">Buscar sin alucinar</div>
+   <div class="tag">Próximamente</div>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 07</div>
+   <div class="ttl">Construye tu sistema de productividad</div>
+   <div class="sub">Flujos propios</div>
+   <div class="tag">Próximamente</div>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 08</div>
+   <div class="ttl">Proyecto final + tu plan a futuro</div>
+   <div class="sub">Cierre y continuidad</div>
+   <div class="tag">Próximamente</div>
+  </div>
+ </div>
+ <div class="sb-foot">GrowUp · growupcr.com</div>
+</nav>
+
+<div class="main" id="top">
+ <div class="pagewrap">
+
+  <div class="pagehead">
+   <div class="crumb">Sesión 01 de 08 · El mapa completo</div>
+   <h1>¿Qué es la inteligencia artificial y por qué te conviene entenderla?</h1>
+   <p class="dek">Desde cero: qué es la IA, cómo funciona, qué puede hacer, qué herramienta usar según tu necesidad y cómo comunicarte con ella de forma efectiva.</p>
+   <div class="metarow">
+    <span class="metachip">Sin experiencia previa</span>
+    <span class="metachip">Se hace en plan gratuito</span>
+    <span class="metachip">Traé una laptop o celular</span>
+   </div>
+  </div>
+
+  <section id="usar">
+   <div class="eyebrow">Cómo usar esta guía</div>
+   <h2>Cómo aprovechar este material</h2>
+   <p class="lead">Esta página es tu material de referencia. Podés consultarla durante la sesión y volver a ella después, cada vez que lo necesites.</p>
+   <div class="callout"><div class="ic">💡</div><p><b>Lo único que necesitás:</b> una cuenta gratuita en Claude, ChatGPT o Gemini. Ninguna de estas opciones requiere tarjeta de crédito.</p></div>
+  </section>
+
+  <section id="que-es">
+   <div class="eyebrow">Parte 1</div>
+   <h2>Qué es la inteligencia artificial</h2>
+   <p class="lead">La IA generativa ya está presente en la mayoría de los entornos de trabajo. Antes de incorporarla a tus procesos, es importante entender qué es exactamente y cómo funciona.</p>
+
+   <h3>¿Qué es exactamente?</h3>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Un modelo de lenguaje se entrena con una cantidad muy grande de texto (libros, artículos, código, páginas web) para aprender a predecir la palabra más probable que continúa un texto. No tiene memoria de conversaciones anteriores, no conoce el contexto de tu empresa a menos que se lo brindes, y cuando no tiene información suficiente, puede generar una respuesta incorrecta con apariencia de certeza.</p></div></div>
+   <p>Formalmente, es un modelo entrenado con grandes volúmenes de texto para predecir la palabra más probable que continúa una secuencia. A partir de ese entrenamiento, sin haber sido programado explícitamente para ello, el modelo desarrolló la capacidad de razonar, resumir, traducir y generar código.</p>
+
+   <h3>Puntos importantes a considerar</h3>
+   <div class="feats">
+    <div class="feat"><div class="badge">⚠️</div><div><h4>Puede generar información incorrecta (alucinaciones)</h4><p>Puede inventar datos, cifras o citas, presentándolos como si fueran ciertos.</p></div></div>
+    <div class="feat"><div class="badge">📅</div><div><h4>Tiene una fecha de corte de conocimiento</h4><p>Su información llega solo hasta cierto punto en el tiempo; no conoce eventos posteriores.</p></div></div>
+    <div class="feat"><div class="badge">🧠</div><div><h4>No recuerda conversaciones anteriores</h4><p>Cada conversación nueva parte de cero, a menos que se le brinde el contexto necesario.</p></div></div>
+    <div class="feat"><div class="badge">⚖️</div><div><h4>No es neutral</h4><p>Se entrenó con textos humanos, y puede reproducir los sesgos presentes en ellos.</p></div></div>
+    <div class="feat"><div class="badge">🔓</div><div><h4>La información que le compartís puede quedar almacenada</h4><p>Se recomienda evitar ingresar contraseñas, datos de clientes o información confidencial.</p></div></div>
+   </div>
+
+   <h3>¿Cómo funciona internamente?</h3>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>El funcionamiento es similar al autocompletado del teclado de un celular, pero a una escala mucho mayor: en vez de predecir la siguiente palabra a partir de un par de mensajes anteriores, el modelo la predice a partir de todo el texto de la conversación, usando millones de parámetros internos ajustados durante el entrenamiento con enormes cantidades de ejemplos.</p></div></div>
+   <p>Todo el texto que se ingresa se divide en fragmentos llamados <b>tokens</b> (aproximadamente, partes de palabras), que ocupan espacio en la <b>ventana de contexto</b> — el equivalente a su memoria de corto plazo. Por eso, en conversaciones muy largas, el modelo puede dejar de considerar la información del inicio.</p>
+
+   <h3>¿Qué hace? ¿Qué puede hacer?</h3>
+   <p>A continuación, un resumen de sus principales capacidades:</p>
+   <div class="feats grid">
+    <div class="feat"><div class="badge">✍️</div><div><h4>Escribe y edita</h4><p>Correos, reportes, guiones, lo que sea.</p></div></div>
+    <div class="feat"><div class="badge">📚</div><div><h4>Resume y traduce</h4><p>Un PDF de 40 páginas en 5 líneas.</p></div></div>
+    <div class="feat"><div class="badge">💻</div><div><h4>Programa</h4><p>Desde una fórmula de Excel hasta una app entera.</p></div></div>
+    <div class="feat"><div class="badge">📊</div><div><h4>Analiza documentos y datos</h4><p>Le tirás una tabla y te dice qué significa.</p></div></div>
+    <div class="feat"><div class="badge">🎨</div><div><h4>Genera imágenes, audio y video</h4><p>De un texto sale una imagen, una voz, un clip.</p></div></div>
+    <div class="feat"><div class="badge">🤖</div><div><h4>Trabaja sola (agentes)</h4><p>Ejecuta tareas completas sin que estés mirando cada paso.</p></div></div>
+   </div>
+   <div class="callout dark"><div class="ic">📊</div><p><b>En la práctica:</b> la mayoría de las personas utiliza solo una fracción de estas capacidades, principalmente para tareas de escritura. El objetivo de esta sesión es ampliar ese uso.</p></div>
+  </section>
+
+  <section id="zoologico">
+   <div class="eyebrow">Parte 2</div>
+   <h2>Panorama de herramientas de IA</h2>
+   <p class="lead">No existe una única IA. Existen múltiples herramientas, cada una especializada en un tipo de tarea distinto.</p>
+
+   <div class="feats grid">
+    <div class="feat"><div class="badge">💬</div><div><h4>Texto y conversación</h4><p>Claude, ChatGPT, Gemini, Grok — tus posibles cerebros principales.</p></div></div>
+    <div class="feat"><div class="badge">🖼️</div><div><h4>Imágenes</h4><p>Midjourney, ChatGPT/DALL·E, Gemini ("Nano Banana"), Ideogram.</p></div></div>
+    <div class="feat"><div class="badge">🎬</div><div><h4>Video</h4><p>Sora, Runway, Veo — de un texto a un clip en segundos.</p></div></div>
+    <div class="feat"><div class="badge">🎙️</div><div><h4>Voz y audio</h4><p>ElevenLabs para voz, Suno para música.</p></div></div>
+    <div class="feat"><div class="badge">👨‍💻</div><div><h4>Código</h4><p>GitHub Copilot, Claude Code, Cursor.</p></div></div>
+    <div class="feat"><div class="badge">🔎</div><div><h4>Investigación con fuentes</h4><p>Perplexity, Gemini Notebook — cero invención, todo citado.</p></div></div>
+   </div>
+
+   <h3>Qué herramienta usar según la necesidad</h3>
+   <div class="tw">
+    <table>
+     <tr><th>Quiero...</th><th>Uso...</th></tr>
+     <tr><td>Escribir o analizar documentos largos, con cuidado</td><td>Claude</td></tr>
+     <tr><td>Una imagen rápida para redes</td><td>Gemini / Midjourney</td></tr>
+     <tr><td>Un video corto desde una idea</td><td>Sora / Runway</td></tr>
+     <tr><td>Investigar con fuentes que pueda verificar</td><td>Perplexity / Gemini Notebook</td></tr>
+     <tr><td>Programar o automatizar algo</td><td>GitHub Copilot / Claude Code</td></tr>
+    </table>
+   </div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Este panorama cambia con frecuencia, ya que surgen nuevas herramientas de forma constante. El criterio que se mantiene es el mismo: primero definir <b>qué se necesita</b>, y después identificar qué herramienta lo resuelve mejor.</p></div></div>
+  </section>
+
+  <section id="formas">
+   <div class="eyebrow">Parte 3</div>
+   <h2>Formas de interactuar con la IA</h2>
+   <p class="lead">La mayoría de las personas solo conoce la interfaz de chat. Existen otras formas de uso que pueden ahorrar bastante más tiempo.</p>
+   <div class="feats">
+    <div class="feat"><div class="badge">🌐</div><div><h4>Chat web</h4><p>La puerta de entrada clásica — la que todo el mundo conoce.</p></div></div>
+    <div class="feat"><div class="badge">📲</div><div><h4>App móvil</h4><p>Lo mismo, pero en el bolsillo — ideal para dictar sobre la marcha.</p></div></div>
+    <div class="feat"><div class="badge">🎙️</div><div><h4>Dictado por voz</h4><p>Hablás en vez de escribir. Sale mucho más contexto en menos tiempo.</p></div></div>
+    <div class="feat"><div class="badge">🧩</div><div><h4>Extensión del navegador</h4><p>Te sigue mientras navegás, sin cambiar de pestaña.</p></div></div>
+    <div class="feat"><div class="badge">🔌</div><div><h4>Integrada en tus apps</h4><p>Directo en Gmail, Docs, Slack — sin copiar y pegar.</p></div></div>
+    <div class="feat"><div class="badge">🤖</div><div><h4>Agentes</h4><p>Le das la tarea y trabaja sola, sin que estés detrás.</p></div></div>
+   </div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Todas estas modalidades cumplen la misma función básica, pero no todas representan el mismo ahorro de tiempo. La elección depende del contexto de uso.</p></div></div>
+  </section>
+
+  <section id="prompting">
+   <div class="eyebrow">Parte 4</div>
+   <h2>Cómo formular buenos prompts</h2>
+   <p class="lead">Pedirle algo a la IA sin dar contexto suficiente reduce la calidad de la respuesta. Cuanto más clara y específica sea la solicitud, mejor será el resultado.</p>
+
+   <h3>Las tres reglas de oro</h3>
+   <div class="feats">
+    <div class="feat"><div class="badge">1</div><div><h4>Decí qué resultado querés, no solo el tema</h4><p>"Escribime sobre productividad" y "escribime un correo de 100 palabras invitando a mi equipo el jueves" no son el mismo pedido.</p></div></div>
+    <div class="feat"><div class="badge">2</div><div><h4>Dale ejemplos cuando el formato importa</h4><p>Un ejemplo de cómo querés el resultado enseña más que tres párrafos describiéndolo.</p></div></div>
+    <div class="feat"><div class="badge">3</div><div><h4>Definí cómo se ve "bien hecho"</h4><p>Si vos no podés describir un buen resultado, ella tampoco lo va a adivinar.</p></div></div>
+   </div>
+
+   <h3>Técnicas de prompting</h3>
+   <p>Consultá cada técnica cuando tengas un caso similar — para eso está esta página.</p>
+
+   <details class="tec" open>
+    <summary><span class="idx">01</span> Sin ejemplos (zero-shot)<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>Se realiza la solicitud de forma directa, sin ejemplos previos. Funciona para tareas simples, pero da menos control sobre el estilo del resultado.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Redacta un correo breve avisando a mi equipo que la reunión del jueves
+se mueve a las 3pm, en un tono cercano pero profesional.</pre></div>
+    </div>
+   </details>
+
+   <details class="tec">
+    <summary><span class="idx">02</span> Con un ejemplo tuyo (one-shot)<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>Se muestra un ejemplo real y se pide que la IA replique ese estilo en el nuevo resultado.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Aquí tienes un correo mío real:
+
+"Equipo, buenas — cambio rápido: la reunión del jueves pasa a las 3pm
+por un choque de agenda. Gracias por la flexibilidad."
+
+Ahora escribe uno avisando que la del viernes se cancela por falta
+de quórum, con el mismo tono.</pre></div>
+    </div>
+   </details>
+
+   <details class="tec">
+    <summary><span class="idx">03</span> Con varios ejemplos (few-shot)<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>Se incluyen dos o tres ejemplos para que la IA identifique el patrón. Cuantos más ejemplos representativos se den, más se ajusta el resultado al estilo buscado.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Aquí tienes tres asuntos de correo míos que funcionaron bien:
+— "Cambio de sala para mañana — nada grave"
+— "Necesito tu ok antes de las 5pm"
+— "Buenas noticias sobre el proyecto X"
+
+Escribe un asunto avisando que se aprobó el presupuesto del próximo
+trimestre, con el mismo estilo directo.</pre></div>
+    </div>
+   </details>
+
+   <details class="tec">
+    <summary><span class="idx">04</span> Dale un rol<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>Asignarle un rol específico ayuda a enfocar la respuesta, de la misma forma en que consultar a un especialista da un resultado distinto que consultar a alguien sin ese conocimiento.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Actúa como un coordinador de operaciones con 10 años de experiencia.
+Revisa esta lista de tareas de la semana y dime cuáles tres son
+las que de verdad no pueden esperar, y por qué.</pre></div>
+    </div>
+   </details>
+
+   <details class="tec">
+    <summary><span class="idx">05</span> Paso a paso (chain-of-thought)<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>Pedirle que razone paso a paso antes de dar una respuesta final mejora el resultado en tareas complejas. En tareas simples, este paso adicional no suele ser necesario.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Tengo estas cinco tareas pendientes con sus plazos y su impacto.
+Piensa paso a paso cuál debería hacer primero, explicando el criterio
+detrás de cada decisión antes de darme el orden final.</pre></div>
+    </div>
+   </details>
+
+   <details class="tec">
+    <summary><span class="idx">06</span> Que pregunte antes de trabajar<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>Esta técnica suele dar el mejor resultado con el menor esfuerzo, ya que permite corregir vacíos de información antes de generar el resultado final.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Antes de escribir el reporte, hazme las preguntas que necesites
+para no dejar nada fuera.</pre></div>
+    </div>
+   </details>
+
+   <details class="tec">
+    <summary><span class="idx">07</span> Acotá por dónde NO ir<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>Indicar explícitamente qué no se quiere incluir evita respuestas demasiado generales cuando se busca algo puntual.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Dame ideas para organizar mejor mi semana, pero sin sugerirme
+apps nuevas ni sistemas complicados — solo ajustes a lo que ya uso hoy.</pre></div>
+    </div>
+   </details>
+
+   <details class="tec">
+    <summary><span class="idx">08</span> "Así sí" y "así no"<span class="chev">›</span></summary>
+    <div class="bd">
+     <p>El ejemplo negativo es tan útil como el positivo para delimitar el resultado esperado, y suele utilizarse poco.</p>
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">prompt.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Así SÍ quiero que suenen mis correos: directos, cortos, sin rodeos.
+Así NO: "Espero que este correo te encuentre muy bien" — nunca uso
+ese tipo de frases. Escribe el correo de seguimiento siguiendo el "así sí".</pre></div>
+    </div>
+   </details>
+  </section>
+
+  <section id="proyecto">
+   <div class="eyebrow">Parte 5 · Cierre</div>
+   <h2>Cómo estructurar un buen proyecto con IA</h2>
+   <p class="lead">A continuación, un proceso para aplicar de forma ordenada todo lo visto en esta sesión.</p>
+
+   <div class="steps">
+    <div class="stp"><div class="n"></div><p><b>Definí el objetivo</b>Especificá con claridad qué se quiere lograr. Si no puede resumirse en una frase, conviene precisarlo antes de continuar.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Elegí la herramienta correcta</b>Según lo visto en la Parte 2: ¿el resultado es texto, imagen, video o código?</p></div>
+    <div class="stp"><div class="n"></div><p><b>Brindá contexto</b>Quién sos, para quién es el resultado, y qué información previa está disponible.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Aplicá una técnica de prompting</b>Rol, ejemplos o razonamiento paso a paso, según el caso.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Revisá el resultado</b>La IA puede cometer errores presentándolos con apariencia de certeza. Es necesario validar la información antes de utilizarla.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Iterá</b>La primera respuesta rara vez es la definitiva. Se recomienda corregir y volver a solicitar hasta ajustar el resultado.</p></div>
+   </div>
+
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Seguir estos pasos en orden reduce la necesidad de correcciones posteriores y mejora la calidad del resultado final.</p></div></div>
+  </section>
+
+  <section id="tarea">
+   <div class="eyebrow">Antes de la sesión 02</div>
+   <h2>Tu práctica de esta semana</h2>
+   <ul class="ck" id="ck">
+    <li><span class="bx"></span><span class="tx"><b>Probá 3 herramientas distintas</b>Una de texto, una de imagen — comparalas con la misma idea.</span></li>
+    <li><span class="bx"></span><span class="tx"><b>Reescribí un correo real</b>Aplicando resultado + ejemplo + formato.</span></li>
+    <li><span class="bx"></span><span class="tx"><b>Probá el modo "paso a paso"</b>Con una decisión de verdad.</span></li>
+    <li><span class="bx"></span><span class="tx"><b>Armá un mini proyecto con la receta de 6 pasos</b>Algo chiquito, de principio a fin.</span></li>
+   </ul>
+   <div class="callout dark"><div class="ic">✉️</div><p><b>Sesión 02 · Tu asistente de comunicación diaria</b> — correos, mensajes y respuestas repetidas, resueltos en una fracción del tiempo.</p></div>
+  </section>
+
+  <footer><b>GrowUp</b> · growupcr.com · Sesión 01 de 08 · Contenido para uso interno del taller</footer>
+ </div>
+</div>
+
+<script>
+function cp(b){
+ var box=b.closest('.code'), pre=box.querySelector('pre'), t=pre.innerText, orig=b.textContent;
+ function done(msg,cls,ms){
+  b.textContent=msg; b.classList.remove('ok'); if(cls)b.classList.add(cls);
+  clearTimeout(b._t); b._t=setTimeout(function(){b.textContent=orig;b.classList.remove('ok');},ms||1800);
+ }
+ function legacy(){
+  try{
+   var ta=document.createElement('textarea');
+   ta.value=t; ta.setAttribute('readonly','');
+   ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+   document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0,t.length);
+   var ok=document.execCommand('copy'); document.body.removeChild(ta);
+   if(ok){done('Copiado ✓','ok');return true;}
+  }catch(e){}
+  return false;
+ }
+ if(navigator.clipboard&&window.isSecureContext){
+  navigator.clipboard.writeText(t).then(function(){done('Copiado ✓','ok');},function(){legacy();});
+ }else{ legacy(); }
+}
+document.querySelectorAll('#ck li').forEach(function(li){
+ li.addEventListener('click',function(){li.classList.toggle('done');});
+});
+</script>
+</body>
+</html>
