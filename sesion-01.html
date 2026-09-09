@@ -437,13 +437,18 @@ ese tipo de frases. Escribe el correo de seguimiento siguiendo el "así sí".</p
 
   <section id="tarea">
    <div class="eyebrow">Antes de la sesión 02</div>
-   <h2>Tu práctica de esta semana</h2>
-   <ul class="ck" id="ck">
-    <li><span class="bx"></span><span class="tx"><b>Probá 3 herramientas distintas</b>Una de texto, una de imagen — comparalas con la misma idea.</span></li>
-    <li><span class="bx"></span><span class="tx"><b>Reescribí un correo real</b>Aplicando resultado + ejemplo + formato.</span></li>
-    <li><span class="bx"></span><span class="tx"><b>Probá el modo "paso a paso"</b>Con una decisión de verdad.</span></li>
-    <li><span class="bx"></span><span class="tx"><b>Armá un mini proyecto con la receta de 6 pasos</b>Algo chiquito, de principio a fin.</span></li>
-   </ul>
+   <h2>Tu tarea de esta semana</h2>
+   <p class="lead">Una sola actividad, pero completa: te sirve para practicar todo lo que vimos hoy, de principio a fin.</p>
+
+   <div class="steps">
+    <div class="stp"><div class="n"></div><p><b>Elegí una empresa</b>Puede ser una que te guste, admires o simplemente te llame la atención.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Investigala con IA</b>Pedile que te resuma a qué se dedica, quiénes son sus clientes y qué la distingue de su competencia.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Imaginate trabajando ahí</b>Elegí el puesto que más te interese — no hace falta que sea real.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Armá un buen prompt</b>Pedile a la IA algo que esa persona necesitaría resolver en su día a día (un correo, un plan, un análisis), aplicando al menos una técnica del kit de esta sesión.</p></div>
+   </div>
+
+   <div class="callout"><div class="ic">📌</div><p><b>Para entregar:</b> el prompt que armaste y la respuesta que obtuviste. Lo revisamos juntos al inicio de la Sesión 02.</p></div>
+
    <div class="callout dark"><div class="ic">✉️</div><p><b>Sesión 02 · Tu asistente de comunicación diaria</b> — correos, mensajes y respuestas repetidas, resueltos en una fracción del tiempo.</p></div>
   </section>
 
@@ -473,9 +478,6 @@ function cp(b){
   navigator.clipboard.writeText(t).then(function(){done('Copiado ✓','ok');},function(){legacy();});
  }else{ legacy(); }
 }
-document.querySelectorAll('#ck li').forEach(function(li){
- li.addEventListener('click',function(){li.classList.toggle('done');});
-});
 </script>
 </body>
 </html>
