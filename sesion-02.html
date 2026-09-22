@@ -119,11 +119,6 @@ details.tec .bd{padding:2px 16px 16px}
 details.tec .bd p{font-size:14px;margin-bottom:9px}
 details.tec .bd p:last-child{margin-bottom:0}
 
-.tagpill{font-family:"Sora";font-size:9.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:3px 10px;border-radius:20px;white-space:nowrap}
-.tagpill.clase{background:var(--blue-tint);color:var(--blue)}
-.tagpill.demo{background:#FFF3DC;color:var(--amber-dark)}
-.tagpill.extra{background:var(--paper);color:var(--muted);border:1px solid var(--line)}
-
 .reslist{margin:2px 0 14px 18px}
 .reslist li{font-size:14px;line-height:1.6;margin-bottom:5px;color:#3f4a59}
 
@@ -144,9 +139,6 @@ details.tec .bd p:last-child{margin-bottom:0}
 .stp .n::before{content:counter(st)}
 .stp p{margin-bottom:0;font-size:14.5px}
 .stp b{display:block;font-family:"Sora";font-size:15px;margin-bottom:2px}
-
-.legend{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0 6px}
-.legend .li{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted)}
 
 footer{padding:34px 0 60px;color:var(--muted);font-size:12.5px}
 footer b{color:var(--navy)}
@@ -271,15 +263,10 @@ footer b{color:var(--navy)}
   <section id="casos">
    <div class="eyebrow">Los 15 casos</div>
    <h2>Practicá con casos reales (ficticios)</h2>
-   <p class="lead">8 los trabajamos juntos en clase, 1 lo vemos en demostración, y los 6 restantes son tu práctica para esta semana. Todos siguen el mismo método: prompt principal, revisión, continuación.</p>
-   <div class="legend">
-    <div class="li"><span class="tagpill clase">En clase</span> práctica guiada</div>
-    <div class="li"><span class="tagpill demo">Demostración</span> se resuelve en grupo</div>
-    <div class="li"><span class="tagpill extra">Práctica adicional</span> para esta semana</div>
-   </div>
+   <p class="lead">Todos siguen el mismo método: prompt principal, revisión, continuación.</p>
 
    <details class="tec" open>
-    <summary><span class="idx">01</span><span class="tec-ttl">Solicitud de reunión <span class="tiempo">· 8 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">01</span><span class="tec-ttl">Solicitud de reunión</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Resumir una solicitud, comparar tres opciones con la agenda y preparar una respuesta sin crear todavía el evento.</p>
      <p><b>Herramientas:</b> Gmail y Google Calendar</p>
@@ -296,7 +283,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">02</span><span class="tec-ttl">Correo con documento adjunto <span class="tiempo">· 10 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">02</span><span class="tec-ttl">Correo con documento adjunto</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Localizar el mensaje, analizar el PDF y extraer condiciones importantes sin inventar datos.</p>
      <p><b>Herramientas:</b> Gmail y Google Drive, o carga manual del PDF</p>
@@ -314,7 +301,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">03</span><span class="tec-ttl">Correo con varias tareas <span class="tiempo">· 8 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">03</span><span class="tec-ttl">Correo con varias tareas</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Convertir un mensaje denso en una lista accionable con responsables, fechas y vacíos.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -332,7 +319,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">04</span><span class="tec-ttl">Cadena de correos larga <span class="tiempo">· 12 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">04</span><span class="tec-ttl">Cadena de correos larga</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Reconstruir una conversación, separar decisiones de propuestas y detectar una contradicción presupuestaria.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -350,7 +337,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">05</span><span class="tec-ttl">Correo poco claro</span><span class="tagpill extra">Práctica adicional</span><span class="chev">›</span></summary>
+    <summary><span class="idx">05</span><span class="tec-ttl">Correo poco claro</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Interpretar una petición ambigua y preparar preguntas antes de comprometer fechas o precios.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -367,7 +354,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">06</span><span class="tec-ttl">Cliente inconforme <span class="tiempo">· 9 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">06</span><span class="tec-ttl">Cliente inconforme</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Reconocer la preocupación, evitar una respuesta defensiva y proponer un siguiente paso verificable.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -384,7 +371,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">07</span><span class="tec-ttl">Correo con Excel</span><span class="tagpill extra">Práctica adicional</span><span class="chev">›</span></summary>
+    <summary><span class="idx">07</span><span class="tec-ttl">Correo con Excel</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Analizar una lista, contar estados y detectar necesidades alimentarias.</p>
      <p><b>Herramientas:</b> Gmail y Google Drive, o carga manual del Excel</p>
@@ -401,7 +388,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">08</span><span class="tec-ttl">Buscar información en Drive <span class="tiempo">· 9 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">08</span><span class="tec-ttl">Buscar información en Drive</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Diferenciar el archivo más reciente del último archivo aprobado.</p>
      <p><b>Herramientas:</b> Gmail y Google Drive</p>
@@ -418,7 +405,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">09</span><span class="tec-ttl">Encontrar información entre varios correos</span><span class="tagpill extra">Práctica adicional</span><span class="chev">›</span></summary>
+    <summary><span class="idx">09</span><span class="tec-ttl">Encontrar información entre varios correos</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Localizar el acuerdo definitivo y descartar cotizaciones reemplazadas.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -435,7 +422,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">10</span><span class="tec-ttl">Convertir correo en documento</span><span class="tagpill extra">Práctica adicional</span><span class="chev">›</span></summary>
+    <summary><span class="idx">10</span><span class="tec-ttl">Convertir correo en documento</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Transformar requisitos dispersos en un documento operativo sin perder datos.</p>
      <p><b>Herramientas:</b> Gmail y creación de archivos en Claude</p>
@@ -452,7 +439,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">11</span><span class="tec-ttl">Correo a reunión y agenda <span class="tiempo">· 10 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">11</span><span class="tec-ttl">Correo a reunión y agenda</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Proponer una reunión con agenda detallada y conservar la aprobación humana antes de crearla.</p>
      <p><b>Herramientas:</b> Gmail y Google Calendar</p>
@@ -468,7 +455,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">12</span><span class="tec-ttl">Responder según contexto anterior</span><span class="tagpill extra">Práctica adicional</span><span class="chev">›</span></summary>
+    <summary><span class="idx">12</span><span class="tec-ttl">Responder según contexto anterior</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Responder una pregunta breve utilizando únicamente la decisión más reciente y explícita.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -485,7 +472,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">13</span><span class="tec-ttl">Detectar algo sospechoso <span class="tiempo">· 8 min</span></span><span class="tagpill demo">Demostración</span><span class="chev">›</span></summary>
+    <summary><span class="idx">13</span><span class="tec-ttl">Detectar algo sospechoso</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Reconocer señales de riesgo sin abrir enlaces ni compartir datos.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -503,7 +490,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">14</span><span class="tec-ttl">Clasificar correos</span><span class="tagpill extra">Práctica adicional</span><span class="chev">›</span></summary>
+    <summary><span class="idx">14</span><span class="tec-ttl">Clasificar correos</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Clasificar mensajes por tema, urgencia y acción requerida.</p>
      <p><b>Herramientas:</b> Gmail</p>
@@ -520,7 +507,7 @@ footer b{color:var(--navy)}
     </div>
    </details>
    <details class="tec">
-    <summary><span class="idx">15</span><span class="tec-ttl">Preparar reunión usando todo el contexto <span class="tiempo">· 12 min</span></span><span class="tagpill clase">En clase</span><span class="chev">›</span></summary>
+    <summary><span class="idx">15</span><span class="tec-ttl">Preparar reunión usando todo el contexto</span><span class="chev">›</span></summary>
     <div class="bd">
      <p><b>Objetivo:</b> Integrar información dispersa en un briefing verificable para una reunión.</p>
      <p><b>Herramientas:</b> Gmail, Google Drive y Google Calendar</p>
