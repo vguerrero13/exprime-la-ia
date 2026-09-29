@@ -177,6 +177,7 @@ footer b{color:var(--navy)}
    <a href="#ejercicio1">Básico vs. profesional</a>
    <a href="#ejercicio2">Campaña Exprime la IA</a>
    <a href="#ejercicio3">Edición con lenguaje natural</a>
+   <a href="#claudedesign">Claude Design (opcional)</a>
    <a href="#ejercicio4">Armá la pieza en Canva</a>
    <a href="#video">De imagen a video</a>
    <a href="#reto">Reto final: el Reel</a>
@@ -241,6 +242,7 @@ footer b{color:var(--navy)}
      <tr><td>Microsoft Designer</td><td>Generar y editar imágenes</td><td>ChatGPT</td></tr>
      <tr><td>Canva</td><td>Composición, texto y animación</td><td>CapCut para el montaje</td></tr>
      <tr><td>CapCut</td><td>Montaje y video corto</td><td>Animar la imagen con zoom y transiciones</td></tr>
+     <tr><td>Claude Design <span class="tiempo">(opcional)</span></td><td>Carruseles y piezas visuales de varias páginas</td><td>Canva: montar el mismo brief manualmente</td></tr>
     </table>
    </div>
    <div class="callout warn"><div class="ic">⚠️</div><p>La disponibilidad y las cuotas de estas funciones pueden cambiar según plan, región y cuenta. Si algo no aparece o pide pago, pasá directo a la alternativa.</p></div>
@@ -313,10 +315,81 @@ footer b{color:var(--navy)}
    <div class="callout"><div class="ic">🔁</div><p>No hagas más de 2-3 generaciones por ejercicio. Si algo no sale, la corrección se hace <b>cambiando el prompt</b>, no repitiendo desde cero.</p></div>
   </section>
 
+  <section id="claudedesign">
+   <div class="eyebrow">Bloque opcional · 15-20 min</div>
+   <h2>Claude Design: carruseles y piezas visuales</h2>
+   <p class="lead">Con un solo brief, Claude Design arma una pieza de varias páginas con consistencia visual: portada, secuencia interna y cierre. Sirve para carruseles de redes sociales, mini-decks o piezas promocionales.</p>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Este bloque es opcional. Si el grupo va justo de tiempo o la herramienta no está disponible, seguí directo a Canva — el ejercicio 4 funciona igual sin haber pasado por acá.</p></div></div>
+
+   <div class="feats grid">
+    <div class="feat"><div class="badge">1</div><div><h4>Tema y objetivo</h4><p>Qué comunica la pieza y para qué se usa.</p></div></div>
+    <div class="feat"><div class="badge">2</div><div><h4>Estructura</h4><p>Cuántas páginas y qué va en cada una.</p></div></div>
+    <div class="feat"><div class="badge">3</div><div><h4>Dirección visual</h4><p>Estilo, paleta y tono general.</p></div></div>
+    <div class="feat"><div class="badge">4</div><div><h4>Consistencia</h4><p>Qué se mantiene igual entre páginas.</p></div></div>
+   </div>
+
+   <h3>Prompt maestro</h3>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">carrusel-maestro.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Diseña un carrusel de Instagram de 6 slides sobre "Exprime la IA - Bootcamp de Productividad Aumentada". Slide 1: portada con título y subtítulo. Slides 2-6: desarrollo del contenido, una idea por slide. Estética tecnológica premium, limpia y moderna; paleta azul eléctrico, violeta y blanco. Mantén consistencia de color, tipografía, márgenes y jerarquía en todas las páginas. Texto mínimo, un punto focal claro por slide, buen espacio negativo.</pre></div>
+
+   <h3>Variantes por objetivo</h3>
+   <p>Reemplazá el tema del prompt maestro según lo que necesites comunicar:</p>
+
+   <details class="tec">
+    <summary><span class="idx">01</span><span class="tec-ttl">Portada de carrusel</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">carrusel.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Diseña una portada vertical 4:5 para un carrusel de Instagram titulado “Exprime la IA”. Subtítulo: “Bootcamp de Productividad Aumentada”. Estética tecnológica premium, limpia y moderna; azul eléctrico, violeta y blanco. Usa una composición editorial con un punto focal claro, título dominante, suficiente espacio negativo y elementos sutiles que representen creatividad, automatización y productividad. Evita saturación visual y bloques largos de texto.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">02</span><span class="tec-ttl">Carrusel educativo · 5 formas de usar IA</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">carrusel.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Diseña un carrusel de Instagram de 6 slides sobre “5 formas de usar IA para trabajar mejor”. Slide 1: portada. Slides 2-6: resumir información; redactar borradores; generar ideas; crear contenido visual; organizar tareas. Audiencia no técnica. Estilo limpio, profesional y moderno. Cada slide debe tener un título corto, una frase de apoyo y un recurso visual simple. Mantén consistencia de color, tipografía, márgenes y jerarquía.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">03</span><span class="tec-ttl">Carrusel · errores comunes</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">carrusel.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Crea un carrusel de 6 slides titulado “3 errores al usar IA y cómo evitarlos”. Usa una narrativa de problema-solución: portada; error 1 y corrección; error 2; error 3; cierre con una regla de oro. Diseño educativo premium, contraste alto, iconografía sencilla, mensajes breves y una idea principal por slide.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">04</span><span class="tec-ttl">Carrusel promocional del taller</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">carrusel.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Diseña un carrusel promocional de 5 slides para “Exprime la IA - Bootcamp de Productividad Aumentada”. Estructura: 1) portada; 2) qué aprenderás; 3) beneficios concretos; 4) ejemplos de lo que crearás; 5) llamado a la acción. Hazlo moderno, tecnológico y confiable. Usa poco texto y titulares potentes. Mantén la misma dirección visual en todas las páginas.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">05</span><span class="tec-ttl">Carrusel paso a paso</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">carrusel.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Diseña un carrusel didáctico de 6 slides sobre “Cómo crear una imagen con IA en 4 pasos”. Estructura: portada; define el objetivo; describe la escena; especifica estilo y formato; mejora mediante iteraciones; resumen final. Usa composición limpia, iconos o recursos visuales sencillos, texto mínimo y jerarquía extremadamente clara. Debe funcionar como una mini guía visual.</pre></div>
+    </div>
+   </details>
+
+   <h3>Ejercicios</h3>
+   <div class="tw">
+    <table>
+     <tr><th>Ejercicio</th><th>Consigna</th><th>Qué practicás</th></tr>
+     <tr><td>Ejercicio A · Prompt pobre vs. brief profesional</td><td>Primero pedí “Haz un carrusel sobre inteligencia artificial”. Luego usá el prompt maestro. Comparen jerarquía, consistencia, estructura y claridad.</td><td>La calidad del brief cambia la dirección visual.</td></tr>
+     <tr><td>Ejercicio B · Carrusel en 10 minutos</td><td>Creá un carrusel de 5-6 slides sobre “5 formas de usar IA para ser más productivo”. Entregable: portada + secuencia coherente.</td><td>Estructurar contenido como sistema visual.</td></tr>
+     <tr><td>Ejercicio C · Tres direcciones visuales</td><td>Mantené el mismo contenido y generá tres versiones: corporativo premium, futurista tecnológico y minimalista editorial.</td><td>Separar contenido de dirección de arte.</td></tr>
+     <tr><td>Ejercicio D · Texto largo a carrusel</td><td>Entregá un párrafo y pedí que lo convierta en 5 slides, reduciendo texto y dejando una idea por pantalla.</td><td>Resumir para diseño, no para documento.</td></tr>
+     <tr><td>Ejercicio E · Reutilización</td><td>Tomá el carrusel final y adaptalo a historia 9:16, portada de Reel y miniatura 16:9 manteniendo la identidad visual.</td><td>Crear un sistema reutilizable de piezas.</td></tr>
+    </table>
+   </div>
+
+   <h3>Prompts cortos de iteración</h3>
+   <p>Para refinar un carrusel ya generado, sin volver a empezar:</p>
+    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">iteracion-01.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Reduce el texto un 35% y conserva únicamente las ideas indispensables. Da más aire al diseño.</pre></div>
+    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">iteracion-02.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Mejora la jerarquía: título dominante, subtítulo secundario, datos de apoyo discretos y un punto focal claro.</pre></div>
+    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">iteracion-03.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Haz que el diseño se vea más premium: menos elementos, mejor alineación, mayor consistencia y más espacio negativo.</pre></div>
+    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">iteracion-04.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Mantén exactamente el sistema visual, pero reemplaza el contenido por el tema “3 herramientas de IA para crear contenido”.</pre></div>
+    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">iteracion-05.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Convierte esta dirección visual en una plantilla reusable para futuros carruseles, manteniendo paleta, tipografía, márgenes y componentes.</pre></div>
+  </section>
+
   <section id="ejercicio4">
    <div class="eyebrow">Ejercicio 4</div>
    <h2>Armá la pieza real en Canva</h2>
-   <p class="lead">Herramienta recomendada: Canva. No hace falta usar IA en este paso.</p>
+   <p class="lead">Herramienta recomendada: Canva. Si ya generaste tu carrusel en Claude Design, este paso es para pulirlo; si no, se parte directo de la imagen editada. No hace falta usar IA en este paso.</p>
    <div class="steps">
     <div class="stp"><div class="n"></div><p><b>Creá un diseño vertical</b>1080 × 1920 píxeles.</p></div>
     <div class="stp"><div class="n"></div><p><b>Cargá tu imagen</b>La que generaste o editaste en los ejercicios anteriores.</p></div>
@@ -332,6 +405,85 @@ footer b{color:var(--navy)}
    <h2>Del prompt de imagen al prompt de video</h2>
    <p class="lead">La idea clave es sencilla: en imagen describimos lo que queremos ver; en video describimos también lo que debe ocurrir.</p>
    <div class="callout dark"><div class="ic">🎬</div><p><b>Fórmula de video:</b> escena + acción + movimiento del sujeto + movimiento de cámara + iluminación + duración + restricciones.</p></div>
+
+   <h3>Vocabulario de cámara</h3>
+   <p>Términos para describir el movimiento de cámara con precisión en tus prompts de video:</p>
+   <div class="tw">
+    <table>
+     <tr><th>Término</th><th>Qué describe</th></tr>
+     <tr><td>Zoom in</td><td>La imagen se acerca visualmente al sujeto.</td></tr>
+     <tr><td>Zoom out</td><td>La imagen se aleja para revelar más contexto.</td></tr>
+     <tr><td>Pan left / right</td><td>La cámara gira horizontalmente.</td></tr>
+     <tr><td>Tilt up / down</td><td>La cámara gira verticalmente.</td></tr>
+     <tr><td>Dolly in / out</td><td>La cámara avanza o retrocede físicamente.</td></tr>
+     <tr><td>Orbit</td><td>La cámara rodea parcialmente al sujeto.</td></tr>
+     <tr><td>Static camera</td><td>La cámara queda fija; solo se mueve el sujeto.</td></tr>
+     <tr><td>Parallax</td><td>Primer plano y fondo se desplazan a distinta velocidad.</td></tr>
+     <tr><td>Rack focus</td><td>El foco cambia de un elemento a otro.</td></tr>
+     <tr><td>Slow motion</td><td>Movimiento ralentizado, útil para una estética premium.</td></tr>
+    </table>
+   </div>
+   <p>Prompts de ejemplo para practicar cada movimiento:</p>
+   <details class="tec">
+    <summary><span class="idx">01</span><span class="tec-ttl">Zoom cinematográfico</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>La persona trabaja en la laptop mientras la cámara realiza un zoom in muy suave. Movimiento natural, iluminación estable, rostro consistente y sin deformaciones. Vertical 9:16, 5 segundos.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">02</span><span class="tec-ttl">Dolly in profesional</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Cinematic slow dolly-in hacia la persona. Mantén exactamente su apariencia y el entorno. Añade movimientos humanos mínimos y realistas. Iluminación azul y violeta, 5 segundos.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">03</span><span class="tec-ttl">Pan lateral</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>La cámara realiza un pan lento de izquierda a derecha mientras la persona continúa trabajando. Mantén rostro, ropa, proporciones y fondo coherentes.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">04</span><span class="tec-ttl">Orbit sutil</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>La cámara realiza un orbit muy suave alrededor del sujeto, de no más de 20 grados. El personaje permanece concentrado en la laptop. Movimiento estable y realista.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">05</span><span class="tec-ttl">Cámara fija</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Static camera. La persona respira, parpadea y escribe de forma natural. No mover la cámara. Mantener exactamente la composición y la identidad.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">06</span><span class="tec-ttl">Parallax</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Crea un efecto de profundidad parallax muy sutil: el sujeto permanece estable mientras fondo y elementos cercanos se desplazan ligeramente a distinta velocidad.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">07</span><span class="tec-ttl">Rack focus</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Comienza enfocando la laptop y cambia suavemente el foco hacia el rostro de la persona. Cámara casi fija, movimiento realista y profundidad de campo cinematográfica.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">08</span><span class="tec-ttl">Producto / objeto protagonista</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Empieza con un plano amplio y realiza un dolly in suave hacia el objeto principal. Pequeño reflejo de luz, fondo limpio y movimiento premium de anuncio comercial.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">09</span><span class="tec-ttl">Loop suave</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Crea un movimiento cíclico discreto que pueda repetirse sin salto visible: respiración ligera, brillo ambiental suave y micro movimiento de cámara.</pre></div>
+    </div>
+   </details>
+   <details class="tec">
+    <summary><span class="idx">10</span><span class="tec-ttl">Reel · tres escenas</span><span class="chev">›</span></summary>
+    <div class="bd">
+     <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">camara.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Genera tres clips coherentes de 4 segundos: 1) persona saturada frente al computador; 2) misma persona usando IA con actitud enfocada y elementos digitales sutiles; 3) escena limpia y optimista con espacio para el texto “Trabaja diferente”. Mantén el mismo personaje, paleta y estilo.</pre></div>
+    </div>
+   </details>
 
    <h3>Ejercicio 5 · Imagen a video</h3>
    <p>Opción A: si tu herramienta ofrece generación imagen-a-video, usá la imagen de un ejercicio anterior como referencia.</p>
@@ -355,6 +507,7 @@ footer b{color:var(--navy)}
    <div class="eyebrow">Reto final</div>
    <h2>Tu Reel de 10 a 15 segundos</h2>
    <p class="lead">Combinás todo lo que construiste durante la sesión. La estructura sugerida necesita solo tres escenas.</p>
+   <div class="callout dark"><div class="ic">🔗</div><p><b>El recorrido completo:</b> idea → prompt → imagen → edición → carrusel / pieza social → animación → video → reutilización.</p></div>
    <div class="tw">
     <table>
      <tr><th>Escena</th><th>Duración</th><th>Visual</th><th>Texto</th></tr>
