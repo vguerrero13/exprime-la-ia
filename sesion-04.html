@@ -349,17 +349,17 @@ footer b{color:var(--navy)}
    <h2>De cualquier formato a un documento editable</h2>
    <p class="lead">Word es donde más tiempo se pierde reescribiendo. Acá practicamos rescatar contenido atrapado en imágenes y PDF, redactar un informe y revisarlo.</p>
    <h3>Ejercicio 1 · De imagen a documento editable</h3>
-   <p>Usá una captura, una foto de una hoja impresa o de una tabla. En el chat de Claude, adjuntala y pedí:</p>
+   <p>Material: <b>W1_Foto_Resumen_Ventas_por_Region.jpg</b>, una foto de una hoja impresa con una tabla. En el chat de Claude, adjuntala y pedí:</p>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">imagen-a-word.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Te comparto la imagen de un documento. Transcribila completa y reconstruila como un documento de Word editable, con los mismos títulos, tablas y listas. Si algo no se lee con claridad, marcalo con [revisar] en lugar de inventarlo.</pre></div>
    <h3>Ejercicio 2 · De PDF a documento editable</h3>
-   <p>Adjuntá un PDF (un reporte, un contrato modelo, una cotización) y pedí:</p>
+   <p>Material: <b>W2_Reporte_Operativo_Agosto_2026.pdf</b>. Adjuntalo en el chat de Claude y pedí:</p>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">pdf-a-word.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Convertí este PDF en un documento de Word editable conservando títulos, tablas y listas. Al final decime qué partes no pudiste reproducir fielmente.</pre></div>
    <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>En ambos ejercicios revisá los números y los nombres propios: son lo primero que conviene comprobar contra el original.</p></div></div>
    <h3>Ejercicio 3 · Informe ejecutivo desde Excel</h3>
-   <p>Abrí un documento nuevo en Word, con el panel de Claude, y usá los cinco mensajes del ejercicio 6 de Excel.</p>
+   <p>Abrí un documento nuevo en Word, con el panel de Claude, y usá tus cinco mensajes del ejercicio 6 de Excel. Si no los tenés, usá <b>W3_Cinco_Mensajes_Clave.docx</b>.</p>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">informe-word.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Con estos cinco mensajes clave, redactá un informe ejecutivo de dos páginas con: resumen general, tres resultados positivos, tres puntos de atención, tendencias y tres recomendaciones. Usá los estilos de título del documento y respaldá cada punto con su dato.</pre></div>
    <h3>Ejercicio 4 · Revisión con cambios controlados</h3>
-   <p>Pedile a Claude que actúe como editor, y revisá cada cambio como si lo hubiera hecho un colega.</p>
+   <p>Material: <b>W4_Borrador_Informe_Para_Revision.docx</b>, un borrador con tono informal y frases largas. Pedile a Claude que actúe como editor, y revisá cada cambio como si lo hubiera hecho un colega.</p>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">revision-editor.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Revisá el informe como editor: ajustá el tono a uno directo y profesional, acortá las oraciones largas y dejá un comentario en cualquier dato que no esté respaldado. Hacé los cambios como cambios controlados para que pueda aceptarlos o rechazarlos uno por uno.</pre></div>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">version-gerencia.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Creá una versión de una sola página para gerencia: los cinco mensajes clave, un indicador destacado por mensaje y una recomendación final.</pre></div>
   </section>
@@ -379,11 +379,13 @@ footer b{color:var(--navy)}
     </table>
    </div>
    <h3>Ejercicio 1 · Diseñá el arco antes de las diapositivas</h3>
+   <p>Material: <b>P_Informe_Ejecutivo_Fuente.docx</b> (el informe de partida) y los tres gráficos <b>Grafico_1</b>, <b>Grafico_2</b> y <b>Grafico_3</b>. Si hiciste el dashboard en Excel, podés usar tus propios gráficos.</p>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">arco-narrativo.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Antes de crear diapositivas, proponé el arco de una historia para presentar estos resultados: 1) situación, 2) tensión, 3) descubrimiento, 4) causas, 5) decisión y próximos pasos. Para cada etapa dame una frase y el dato que la respalda.</pre></div>
    <h3>Ejercicio 2 · Generá la presentación</h3>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">crear-presentacion.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Creá una presentación de 6 diapositivas con esa historia. Cada título debe ser una conclusión, no un tema, de máximo 12 palabras. Una sola idea por diapositiva, acompañada del gráfico o indicador que la respalda. Usá únicamente datos del libro.</pre></div>
    <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Fijate en los títulos: “Las ventas superaron la meta en 5 de 6 regiones” cuenta algo; “Resultados por región” no. Pedile a Claude que reescriba cualquier título que sea solo un tema.</p></div></div>
    <h3>Ejercicio 3 · Aplicá tu plantilla</h3>
+   <p>Material: <b>P_Plantilla_Empresa.pptx</b>, con cuatro diseños de diapositiva: portada, título y contenido, sección y cifra destacada.</p>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">plantilla.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Aplicá a esta presentación el diseño de la plantilla de la empresa, manteniendo sus fuentes, colores y diseños de diapositiva. No cambies el contenido.</pre></div>
    <h3>Ejercicio 4 · Notas del presentador</h3>
    <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">notas.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Escribí las notas del presentador para cada diapositiva, en tono conversacional, de unos 30 a 45 segundos cada una, con una frase de transición hacia la siguiente.</pre></div>
