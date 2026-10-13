@@ -1,0 +1,36 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Solicitud de cotización · Práctica</title><style>
+:root{--navy:#001D45;--blue:#1D67CD;--ink:#101828;--muted:#5B6472;--line:#E7EAF0;--paper:#F7F9FC;--amber:#F5A524}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+header{background:var(--navy);color:#fff;padding:18px 28px}header b{font-size:18px}header span{opacity:.75;margin-left:10px;font-size:13px}
+main{max-width:980px;margin:0 auto;padding:28px}h1{font-size:26px;color:var(--navy);margin:0 0 6px}h2{font-size:18px;color:var(--navy);margin:30px 0 8px}
+.tag{display:inline-block;background:#EAF1FC;color:var(--blue);font-size:12px;padding:3px 9px;border-radius:99px;font-weight:700}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:14px}th{background:var(--navy);color:#fff;text-align:left;padding:9px 10px}td{padding:9px 10px;border-bottom:1px solid var(--line)}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:10px 0}
+.small{font-size:13px;color:var(--muted)}label{display:block;font-weight:700;font-size:14px;margin:14px 0 4px}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid #cbd3df;border-radius:6px;font:inherit;background:#fff}
+button{background:var(--blue);color:#fff;border:0;border-radius:8px;padding:11px 22px;font-weight:700;font-size:15px;cursor:pointer;margin-top:18px}
+.ok{display:none;margin-top:18px;background:#E8F7EE;border:1px solid #9AD5B1;padding:14px;border-radius:8px}
+.banner{background:#FFF4DC;border:1px solid var(--amber);padding:10px 14px;border-radius:8px;font-size:13px;margin:14px 0}
+</style></head><body>
+<header><b>growup</b><span>Taller Exprime la IA · Formulario de práctica</span></header>
+<main>
+<span class="tag">Sesión 5 · Práctica con Claude en Chrome</span>
+<h1>Solicitud de cotización</h1>
+<div class="banner">Formulario de práctica: no envía nada a ningún lugar. Al guardar solo muestra un mensaje en esta página.</div>
+<form id="f" onsubmit="return enviar(event)">
+<label for="prov">Proveedor</label><select id="prov" name="proveedor"><option value="">Elegí un proveedor</option><option>Lácteos del Valle</option><option>Granja Montaña</option><option>Quesos Aurora</option><option>Frescura Andina</option><option>Frío Central</option><option>Bebidas Tropicales</option><option>Jugos del Pacífico</option><option>Helados Polar</option><option>Cremas del Sur</option><option>Distribuidora Nube</option></select>
+<label for="cat">Categoría</label><select id="cat" name="categoria"><option value="">Elegí una categoría</option><option>Lácteos</option><option>Refrigerados</option><option>Bebidas</option><option>Helados</option></select>
+<label for="cant">Cantidad (unidades)</label><input id="cant" name="cantidad" type="number" min="1">
+<label for="fecha">Fecha requerida</label><input id="fecha" name="fecha" type="date">
+<label for="mail">Correo de contacto</label><input id="mail" name="correo" type="email" placeholder="nombre@empresa.example">
+<label for="com">Comentarios</label><textarea id="com" name="comentarios" rows="4"></textarea>
+<button type="submit">Guardar solicitud</button>
+</form>
+<div class="ok" id="ok"></div>
+<script>
+function enviar(e){e.preventDefault();var f=e.target,d=new FormData(f);
+var t="<b>Solicitud simulada registrada. No se envió nada.</b><br><br>"+
+"Proveedor: "+(d.get('proveedor')||'—')+"<br>Categoría: "+(d.get('categoria')||'—')+"<br>Cantidad: "+(d.get('cantidad')||'—')+"<br>Fecha requerida: "+(d.get('fecha')||'—')+"<br>Correo: "+(d.get('correo')||'—')+"<br>Comentarios: "+(d.get('comentarios')||'—');
+var o=document.getElementById('ok');o.innerHTML=t;o.style.display='block';return false;}
+</script>
+</main></body></html>
