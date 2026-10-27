@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sesión 07 · Copiloto, agentes y combinaciones · Taller Exprime la IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+ --navy:#001D45; --navy2:#0B1B33; --navy3:#0E2A52;
+ --blue:#1D67CD; --blue-tint:#EAF1FC;
+ --amber:#F5A524; --amber-dark:#B97400;
+ --ink:#101828; --muted:#5B6472; --line:#E7EAF0; --paper:#F7F9FC; --white:#fff;
+ --sbw:278px; --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:var(--ink);background:#fff;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+b,strong{color:var(--navy);font-weight:700}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sbw);height:100vh;overflow-y:auto;background:var(--navy);color:#fff;padding:26px 20px 20px;z-index:20}
+.main{margin-left:var(--sbw)}
+.pagewrap{max-width:760px;margin:0 auto;padding:0 48px}
+
+.sb-logo-img{display:block;width:148px;height:auto}
+.sb-tag{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#7f93b8;font-weight:700;margin-top:4px}
+.sb-nav{margin-top:30px;display:flex;flex-direction:column;gap:3px}
+.sb-item{display:block;padding:10px 12px;border-radius:9px;color:#c8d4e8}
+.sb-item .num{font-family:"Sora";font-size:11px;font-weight:700;color:#6f85ad;letter-spacing:.5px}
+.sb-item .ttl{font-family:"Sora";font-size:13.5px;font-weight:700;line-height:1.3;margin-top:2px;color:#dbe4f2}
+.sb-item .sub{font-size:11px;color:#7f93b8;margin-top:2px;line-height:1.3}
+.sb-item.active{background:var(--navy3)}
+.sb-item.active .num{color:var(--amber)}
+.sb-item.active .ttl{color:#fff}
+a.sb-item:hover{background:#0F284D}
+.sb-item.locked{opacity:.5;cursor:default}
+.sb-item.locked .tag{display:inline-block;margin-top:5px;font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#7f93b8;border:1px solid #2b3c5c;border-radius:20px;padding:2px 8px}
+.sb-sub{margin:2px 0 10px 12px;padding-left:12px;border-left:1.5px solid #223759;display:flex;flex-direction:column;gap:1px}
+.sb-sub a{display:block;padding:6px 10px;font-size:12.5px;color:#a9bad6;border-radius:6px}
+.sb-sub a:hover{background:#0F284D;color:#fff}
+.sb-foot{margin-top:28px;padding-top:16px;border-top:1px solid #223759;font-size:11px;color:#5c6f8f}
+
+.navtoggle{display:none;position:fixed;top:14px;left:14px;z-index:30;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-family:"Sora";font-weight:700;font-size:13px;cursor:pointer}
+.sb-overlay{display:none}
+
+.pagehead{padding:52px 0 30px}
+.crumb{font-family:"Sora";font-size:11.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+h1{font-family:"Sora";font-weight:800;font-size:clamp(26px,3.8vw,36px);line-height:1.14;letter-spacing:-.6px;color:var(--navy);margin-bottom:12px}
+.dek{font-size:18px;line-height:1.55;color:#3a4553;max-width:62ch}
+.metarow{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.metachip{font-size:12px;font-weight:600;color:var(--navy);background:var(--blue-tint);border-radius:20px;padding:5px 12px}
+
+.materials-btn{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:10px 18px;background:var(--white);border:1.5px solid var(--line);border-radius:8px;font-family:"Sora";font-weight:700;font-size:13.5px;color:var(--navy)}
+.materials-btn:hover{border-color:var(--blue)}
+.materials-btn svg{width:19px;height:19px;flex:0 0 auto}
+
+section{padding:34px 0;border-top:1px solid var(--line)}
+.pagehead + section{border-top:none}
+h2{font-family:"Sora";font-weight:800;font-size:24px;line-height:1.2;letter-spacing:-.4px;color:var(--navy);margin-bottom:10px}
+h3{font-family:"Sora";font-weight:700;font-size:18px;line-height:1.25;color:var(--navy);margin:26px 0 10px}
+h4{font-family:"Sora";font-weight:700;font-size:15.5px;color:var(--navy);margin-bottom:5px}
+.eyebrow{font-family:"Sora";font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+p{margin-bottom:13px}
+p.lead{font-size:17px;line-height:1.55;color:#33404f}
+.acc{color:var(--amber-dark);font-weight:700}
+
+.feats{display:flex;flex-direction:column;gap:2px;margin:18px 0}
+.feat{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.feats.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.feats.grid .feat{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;background:var(--paper)}
+.feat.on{background:var(--navy);border-radius:var(--radius);padding:14px 16px;border:none}
+.feat.on h4,.feat.on p{color:#fff}
+.feat.on p{color:#c8d4e8}
+.badge{width:38px;height:38px;border-radius:9px;background:var(--blue-tint);display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto}
+.feat.on .badge{background:rgba(255,255,255,.12)}
+.feat h4{margin-bottom:3px}
+.feat p{font-size:13.8px;color:#4a5564;margin-bottom:0;line-height:1.5}
+
+.callout{display:flex;gap:12px;background:var(--blue-tint);border-radius:var(--radius);padding:14px 16px;margin:18px 0}
+.callout.dark{background:var(--navy);color:#fff}
+.callout.dark p{color:#c8d4e8}
+.callout.dark b{color:#fff}
+.callout.warn{background:#FDF0EF}
+.callout.warn b{color:#8a2b20}
+.callout .ic{font-size:17px;flex:0 0 auto}
+.callout p{margin:0;font-size:14px;line-height:1.55}
+
+.bit{display:flex;gap:12px;background:#FFFBF0;border:1.5px dashed var(--amber);border-radius:var(--radius);padding:14px 16px;margin:18px 0}
+.bit .ic{font-size:19px;flex:0 0 auto}
+.bit .lb{font-family:"Sora";font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--amber-dark);margin-bottom:4px}
+.bit p{margin:0;font-size:14.5px;line-height:1.58;color:#4a3c10}
+.bit b{color:#2a2000}
+
+.tw{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:var(--radius)}
+table{width:100%;border-collapse:collapse;font-size:13.8px;min-width:520px}
+th{background:var(--paper);font-family:"Sora";font-weight:700;font-size:11px;letter-spacing:.6px;text-transform:uppercase;text-align:left;padding:11px 14px;color:var(--navy);border-bottom:1px solid var(--line)}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45;color:#3f4a59}
+td:first-child{font-weight:600;color:var(--navy)}
+tr:last-child td{border-bottom:none}
+
+.code{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:16px 0;background:#fff}
+.code .bar{background:var(--navy2);padding:9px 14px;display:flex;align-items:center;gap:7px}
+.code .dot{width:8px;height:8px;border-radius:50%}
+.code .dot.r{background:#FF5F57}.code .dot.y{background:#FEBC2E}.code .dot.g{background:#28C840}
+.code .lbl{margin-left:8px;font-family:"Sora";font-size:11.5px;color:#8fa3c4;font-weight:600}
+.code button.copy{margin-left:auto;background:none;border:1px solid #2b3c5c;color:#c8d4e8;font-family:"Sora";font-size:10.5px;font-weight:700;letter-spacing:.5px;padding:4px 11px;border-radius:6px;cursor:pointer}
+.code button.copy:hover{background:#152847}
+.code button.copy.ok{background:#1f7a4d;border-color:#1f7a4d;color:#fff}
+.code pre{padding:16px 18px;font-family:"JetBrains Mono",Consolas,ui-monospace,monospace;font-size:12.8px;line-height:1.62;white-space:pre-wrap;word-wrap:break-word;color:#1b2430;background:var(--paper);margin:0}
+
+details.tec{border:1px solid var(--line);border-radius:var(--radius);margin:9px 0;background:#fff;overflow:hidden}
+details.tec summary{cursor:pointer;list-style:none;padding:13px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:9px 11px;font-family:"Sora";font-weight:700;font-size:14.5px;color:var(--navy)}
+details.tec summary::-webkit-details-marker{display:none}
+details.tec .tec-ttl{flex:1 1 auto;min-width:140px}
+details.tec .tec-ttl .tiempo{font-family:"Inter";font-weight:600;font-size:12.5px;color:var(--muted)}
+details.tec .chev{margin-left:auto;font-size:13px;color:var(--blue);transition:transform .15s}
+details.tec[open] .chev{transform:rotate(90deg)}
+details.tec .idx{font-family:"Sora";font-size:11px;color:var(--muted);background:var(--paper);border-radius:20px;padding:2px 9px}
+details.tec .bd{padding:2px 16px 16px}
+details.tec .bd p{font-size:14px;margin-bottom:9px}
+details.tec .bd p:last-child{margin-bottom:0}
+
+.reslist{margin:2px 0 14px 18px}
+.reslist li{font-size:14px;line-height:1.6;margin-bottom:5px;color:#3f4a59}
+
+.steps{counter-reset:st;margin:18px 0}
+.stp{display:grid;grid-template-columns:34px 1fr;gap:13px;padding:11px 0;border-bottom:1px solid var(--line)}
+.stp:last-child{border-bottom:none}
+.stp .n{counter-increment:st;width:28px;height:28px;border-radius:50%;background:var(--blue-tint);color:var(--blue);font-family:"Sora";font-weight:800;font-size:12.5px;display:grid;place-items:center}
+.stp .n::before{content:counter(st)}
+.stp p{margin-bottom:0;font-size:14.5px}
+.stp b{display:block;font-family:"Sora";font-size:15px;margin-bottom:2px}
+
+footer{padding:34px 0 60px;color:var(--muted);font-size:12.5px}
+footer b{color:var(--navy)}
+
+@media(max-width:900px){
+ .sidebar{transform:translateX(-100%);transition:transform .2s;border-right:1px solid #223759}
+ .sidebar.open{transform:translateX(0)}
+ .main{margin-left:0}
+ .navtoggle{display:block}
+ .sb-overlay.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:15}
+ .pagewrap{padding:0 22px}
+ .feats.grid{grid-template-columns:1fr}
+}
+.materials-btn{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:10px 18px;background:var(--white);border:1.5px solid var(--line);border-radius:8px;font-family:"Sora";font-weight:700;font-size:13.5px;color:var(--navy)}
+.materials-btn:hover{border-color:var(--blue)}
+.materials-btn svg{width:19px;height:19px;flex:0 0 auto}
+</style>
+</head>
+<body>
+
+<button class="navtoggle" onclick="document.querySelector('.sidebar').classList.toggle('open');document.querySelector('.sb-overlay').classList.toggle('show')">☰ Menú</button>
+<div class="sb-overlay" onclick="document.querySelector('.sidebar').classList.remove('open');this.classList.remove('show')"></div>
+
+<nav class="sidebar">
+ <a href="index.html"><img class="sb-logo-img" src="data:image/png;base64,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" alt="GrowUp"></a>
+ <div class="sb-tag">Taller Exprime la IA</div>
+ <div class="sb-nav">
+  <a class="sb-item" href="sesion-01.html">
+   <div class="num">SESIÓN 01</div>
+   <div class="ttl">¿Qué es la IA y cómo le hablo?</div>
+   <div class="sub">El mapa completo</div>
+  </a>
+  <a class="sb-item" href="sesion-02.html">
+   <div class="num">SESIÓN 02</div>
+   <div class="ttl">Tu asistente de comunicación diaria</div>
+   <div class="sub">Con Gmail, Drive y Calendar</div>
+  </a>
+  <a class="sb-item" href="sesion-03.html">
+   <div class="num">SESIÓN 03</div>
+   <div class="ttl">Genera imágenes y video con IA</div>
+   <div class="sub">De la idea a la pieza visual</div>
+  </a>
+  <a class="sb-item" href="sesion-04.html">
+   <div class="num">SESIÓN 04</div>
+   <div class="ttl">Claude dentro de Office</div>
+   <div class="sub">Excel, Word y PowerPoint</div>
+  </a>
+  <a class="sb-item" href="sesion-05.html">
+   <div class="num">SESIÓN 05</div>
+   <div class="ttl">Automatiza lo que repites</div>
+   <div class="sub">Skills, Chrome y Outlook</div>
+  </a>
+  <a class="sb-item" href="sesion-06.html">
+   <div class="num">SESIÓN 06</div>
+   <div class="ttl">Del archivo al reporte automático</div>
+   <div class="sub">Cowork, datos y fuentes verificadas</div>
+  </a>
+  <a class="sb-item active" href="#top">
+   <div class="num">SESIÓN 07</div>
+   <div class="ttl">Copiloto, agentes y combinaciones</div>
+   <div class="sub">Tu sistema completo</div>
+  </a>
+  <div class="sb-sub">
+   <a href="#antes">Antes de empezar</a>
+   <a href="#copiloto">Parte 1 · Tu copiloto</a>
+   <a href="#e1">Perfil de trabajo</a>
+   <a href="#e2">Proyecto principal</a>
+   <a href="#e3">Banco de plantillas</a>
+   <a href="#agentes">Parte 2 · Agentes</a>
+   <a href="#e4">El coordinador</a>
+   <a href="#e5">El verificador</a>
+   <a href="#vivo">Parte 3 · Mostrar resultados</a>
+   <a href="#e6">Dashboard en vivo</a>
+   <a href="#e7">Claude Motion</a>
+   <a href="#e8">Tu cadena de trabajo</a>
+   <a href="#problemas">Si algo falla</a>
+  </div>
+  <div class="sb-item locked">
+   <div class="num">SESIÓN 08</div>
+   <div class="ttl">Proyecto final + tu plan a futuro</div>
+   <div class="sub">Cierre y continuidad</div>
+   <div class="tag">Próximamente</div>
+  </div>
+ </div>
+ <div class="sb-foot">GrowUp · growupcr.com</div>
+</nav>
+
+<div class="main" id="top">
+ <div class="pagewrap">
+
+  <div class="pagehead">
+   <div class="crumb">Sesión 07 de 08 · Tu sistema completo</div>
+   <h1>Copiloto, agentes y combinaciones</h1>
+   <p class="dek">Combina todo lo aprendido: un copiloto que te conoce, un equipo de agentes con un verificador, tableros que se actualizan y animaciones para contar lo que encontraste.</p>
+   <div class="metarow">
+    <span class="metachip">Tu copiloto: perfil, proyecto y banco</span>
+    <span class="metachip">Agentes que dirigen a otros agentes</span>
+    <span class="metachip">Dashboards en vivo y Claude Motion</span>
+   </div>
+  </div>
+
+  <section id="antes">
+   <div class="eyebrow">Antes de empezar</div>
+   <h2>Qué necesitas para esta sesión</h2>
+   <p class="lead">Hoy juntas todo lo aprendido en un sistema: un <b>copiloto</b> que ya te conoce, un <b>equipo de agentes</b> que reparte el trabajo, tableros que se actualizan solos y animaciones para contar lo que encontraste.</p>
+   <div class="tw">
+    <table>
+     <tr><th>Herramienta</th><th>Para qué la usamos</th><th>Plan alternativo</th></tr>
+     <tr><td>Claude: perfil y proyectos</td><td>Tu perfil de trabajo y un proyecto con instrucciones y archivos</td><td>Si no ves proyectos, pega tus instrucciones al inicio de cada chat</td></tr>
+     <tr><td>Cowork con sub-agentes</td><td>Un coordinador que reparte el trabajo y lo integra</td><td>Hacer cada tarea por separado en el chat y unir los resultados tú</td></tr>
+     <tr><td>Dashboards en vivo y Claude Motion</td><td>Tableros que traen datos nuevos y animaciones cortas</td><td>Demostración del instructor; tú usas el dashboard HTML de la sesión 6</td></tr>
+    </table>
+   </div>
+   <div class="callout"><div class="ic">⚠️</div><p>Cowork requiere la aplicación de escritorio y un plan de pago. Los dashboards en vivo y Claude Motion son funciones nuevas que pueden no estar disponibles en tu plan. Si no las ves, sigue la demostración del instructor: el objetivo es que conozcas lo que se puede hacer.</p></div>
+   <div class="steps">
+    <div class="stp"><div class="n"></div><p><b>Descarga los materiales</b>Incluyen la plantilla de perfil, un banco inicial de prompts, el caso de una reunión semanal y la hoja de flujo semanal.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Copia las carpetas</b>Trabaja siempre sobre una copia de 2_Caso_Reunion_Semanal.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Ten a mano tus skills y prompts</b>Los de las sesiones 4, 5 y 6 sirven como materia prima.</p></div>
+   </div>
+   <div class="callout dark"><div class="ic">🔒</div><p><b>Regla de oro:</b> más herramientas significa más cuidado. Usa solo datos ficticios, pide un plan antes de que los agentes actúen y verifica antes de enviar o decidir.</p></div>
+  </section>
+
+  <section id="copiloto">
+   <div class="eyebrow">Parte 1 · Tu copiloto</div>
+   <h2>Que Claude ya te conozca</h2>
+   <p class="lead">Cada vez que abres un chat vacío, Claude no sabe quién eres, cómo trabajas ni qué reglas tienes. Un copiloto resuelve eso con tres piezas.</p>
+   <div class="tw">
+    <table>
+     <tr><th>Pieza</th><th>Qué contiene</th><th>Dónde vive</th></tr>
+     <tr><td>Perfil de trabajo</td><td>Tu rol, estilo, prioridades y reglas</td><td>Preferencias personales de tu cuenta</td></tr>
+     <tr><td>Proyecto</td><td>Instrucciones del proyecto y archivos clave</td><td>Un proyecto de Claude</td></tr>
+     <tr><td>Banco de plantillas</td><td>Tus mejores prompts y skills, ordenados</td><td>Un documento tuyo y tus skills</td></tr>
+    </table>
+   </div>
+   <div class="callout"><div class="ic">💡</div><p><b>La idea:</b> el perfil responde “¿quién soy y cómo trabajo?”, el proyecto responde “¿en qué estamos trabajando?” y el banco responde “¿cómo lo pido?”.</p></div>
+  </section>
+
+  <section id="e1">
+   <div class="eyebrow">Ejercicio 1</div>
+   <h2>Diseña tu perfil de trabajo</h2>
+   <p class="lead">Usa la <b>Plantilla_Perfil_de_Trabajo.docx</b> para pensar tus respuestas y luego deja que Claude te entreviste.</p>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">1-entrevista-perfil.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Entrevístame, de una pregunta a la vez, para crear mi perfil de trabajo: mi rol y a quién sirvo, mi estilo de comunicación (formal o cercano, corto o detallado), mis prioridades del mes, las tareas que repito cada semana, mis herramientas y las reglas que nunca debes romper, por ejemplo no inventar datos. Al terminar, redáctalo como instrucciones personales de máximo 300 palabras.</pre></div>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">2-revisar-perfil.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Lee estas instrucciones como si fueras tú, recibiéndolas por primera vez. Dime qué es ambiguo, qué se contradice y qué falta. No lo reescribas todavía.</pre></div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Pega el resultado final en las preferencias personales de tu perfil de Claude (el nombre exacto puede variar según tu versión). No incluyas datos confidenciales.</p></div></div>
+  </section>
+
+  <section id="e2">
+   <div class="eyebrow">Ejercicio 2</div>
+   <h2>Crea tu proyecto principal</h2>
+   <p class="lead">Vas a crear un proyecto llamado <b>Operaciones semanales</b> con instrucciones y archivos, y comprobar que Claude responde sin que repitas el contexto.</p>
+   <div class="steps">
+    <div class="stp"><div class="n"></div><p><b>Crea el proyecto</b>En Claude, crea un proyecto nuevo llamado Operaciones semanales.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Sube los archivos clave</b>Directorio_Proveedores.xlsx y Agenda_Reunion_Semanal.txt, de la carpeta del caso.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Redacta las instrucciones</b>Usa el prompt de abajo para que Claude las escriba por ti.</p></div>
+    <div class="stp"><div class="n"></div><p><b>Pruébalo</b>Haz la misma pregunta en un chat vacío y en el proyecto, y compara.</p></div>
+   </div>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">1-instrucciones-del-proyecto.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Con mi perfil de trabajo y los archivos de este proyecto, redacta las instrucciones del proyecto Operaciones semanales: qué es el proyecto, qué archivos contiene y para qué sirve cada uno, cómo debes responderme, qué reglas nunca debes romper y qué hacer cuando falte información.</pre></div>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">2-prueba-sin-contexto.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>¿Qué proveedores están suspendidos y qué plazo de entrega tiene cada proveedor de lácteos?</pre></div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Haz la prueba dos veces: en un chat vacío (no podrá responder o inventará) y dentro del proyecto (responderá con el directorio). Esa diferencia es el valor del copiloto.</p></div></div>
+  </section>
+
+  <section id="e3">
+   <div class="eyebrow">Ejercicio 3</div>
+   <h2>Arma tu banco de plantillas</h2>
+   <p class="lead">Tienes decenas de prompts de las últimas sesiones. Un banco bien organizado te ahorra buscarlos. Abre <b>Banco_de_Plantillas_Inicial.docx</b>.</p>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">organizar-banco.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Organiza estos prompts por tipo de tarea (datos, documentos, presentaciones, automatización, web, correo e investigación). Elimina los repetidos o muy parecidos y quédate con el mejor. Para cada prompt agrega cuándo usarlo y qué dato debo completar antes de enviarlo. Marca con un asterisco los que conviene convertir en skill. Entrégalo como un documento con una tabla.</pre></div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>En el banco hay prompts parecidos a propósito. Revisa si Claude eligió bien cuál conservar y por qué.</p></div></div>
+  </section>
+
+  <section id="agentes">
+   <div class="eyebrow">Parte 2 · Agentes</div>
+   <h2>Un equipo de agentes que reparte el trabajo</h2>
+   <p class="lead">Un agente es Claude trabajando en una tarea con un rol y un resultado definidos. Un <b>coordinador</b> reparte el trabajo entre varios agentes y junta lo que cada uno entrega. Es como un jefe de equipo, no como un botón mágico.</p>
+   <div class="tw">
+    <table>
+     <tr><th>Rol</th><th>Qué hace</th><th>Qué entrega</th></tr>
+     <tr><td>Coordinador</td><td>Divide la tarea, reparte y junta</td><td>Resumen integrado</td></tr>
+     <tr><td>Agente de facturas</td><td>Extrae y revisa facturas</td><td>Hoja con problemas</td></tr>
+     <tr><td>Agente de ventas</td><td>Analiza la base de ventas</td><td>Tres hallazgos con su cifra</td></tr>
+     <tr><td>Agente de pendientes</td><td>Lee lo que quedó abierto</td><td>Lista de pendientes</td></tr>
+     <tr><td>Verificador</td><td>Comprueba cada cifra contra los archivos</td><td>Tabla verificada o no</td></tr>
+    </table>
+   </div>
+   <div class="callout warn"><div class="ic">⚠️</div><p>Cada agente consume uso de tu plan, y un error de un agente puede pasar al siguiente. Por eso el último paso siempre es un verificador independiente y, al final, una persona.</p></div>
+  </section>
+
+  <section id="e4">
+   <div class="eyebrow">Ejercicio 4</div>
+   <h2>El coordinador prepara la reunión semanal</h2>
+   <p class="lead">Comparte la carpeta <b>2_Caso_Reunion_Semanal</b> con Cowork. Primero pide el plan del equipo y luego su ejecución.</p>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">coordinador.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Prepara la reunión semanal de operaciones con la carpeta que te compartí. Actúa como coordinador y reparte el trabajo entre tres sub-agentes que trabajen en paralelo: 1) Facturas: extrae y revisa las facturas de septiembre contra el directorio de proveedores y los contratos. 2) Ventas: analiza Ventas_Detalle_2026.xlsx y encuentra los tres hallazgos más importantes con su cifra. 3) Pendientes: lee Pendientes_Semana_Pasada.txt e indica qué sigue abierto. Antes de empezar, muéstrame el plan: qué hace cada sub-agente, qué recibe y qué entrega. Cuando apruebe, ejecútalo e integra los tres resultados en un resumen de una página que responda la agenda de la reunión.</pre></div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Si no tienes Cowork, haz cada una de las tres tareas por separado en el chat, copia los resultados y pídele a Claude que los integre.</p></div></div>
+  </section>
+
+  <section id="e5">
+   <div class="eyebrow">Ejercicio 5</div>
+   <h2>Un verificador que revisa a los demás</h2>
+   <p class="lead">El agente verificador no debe haber participado en el trabajo, para que no se corrija a sí mismo. En la carpeta hay un borrador de un compañero, <b>Resumen_borrador_de_Marcos.txt</b>, que nadie ha revisado.</p>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">verificador.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Actúa ahora como agente verificador, independiente de los anteriores. Revisa el resumen de Marcos (Resumen_borrador_de_Marcos.txt). Para cada afirmación con una cifra, comprueba si el dato existe en los archivos de la carpeta. Devuélveme una tabla con la afirmación, el dato que encontraste en los archivos y si la afirmación es verdadera o falsa. No corrijas nada: solo informa.</pre></div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Compara el resultado con lo que encontró el equipo del ejercicio anterior. Si el verificador y el equipo se contradicen, comprueba la cifra tú mismo en el archivo.</p></div></div>
+  </section>
+
+  <section id="vivo">
+   <div class="eyebrow">Parte 3 · Mostrar lo que encontraste</div>
+   <h2>Dashboards en vivo y Claude Motion</h2>
+   <p class="lead">Dos herramientas nuevas que sirven para <b>comunicar</b> los resultados. Las verás en demostración.</p>
+   <div class="tw">
+    <table>
+     <tr><th>Herramienta</th><th>Qué hace</th><th>Cuándo usarla</th></tr>
+     <tr><td>Dashboard en vivo</td><td>Un tablero persistente que trae datos frescos cada vez que se abre, a partir de conectores o archivos</td><td>Cuando el mismo reporte se consulta cada semana</td></tr>
+     <tr><td>Claude Motion</td><td>Convierte texto, gráficos e imágenes en animaciones cortas exportables como video</td><td>Cuando quieres que un hallazgo se entienda en 15 segundos</td></tr>
+    </table>
+   </div>
+   <div class="callout"><div class="ic">🧪</div><p>Estas funciones son nuevas y su disponibilidad depende de tu plan. Mientras las veo en demostración, tú practicas con lo que sí tienes: el dashboard HTML que creaste en la sesión 6.</p></div>
+  </section>
+
+  <section id="e6">
+   <div class="eyebrow">Ejercicio 6</div>
+   <h2>Un dashboard que se actualiza solo</h2>
+   <p class="lead">Demostración del instructor con la base de ventas y el archivo de octubre. Quien no tenga la función puede hacer el equivalente con un dashboard HTML.</p>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">dashboard-en-vivo.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Crea un dashboard persistente con los datos de Ventas_Detalle_2026.xlsx: ventas por mes, ventas por región, margen por canal y un indicador de ventas del mes en curso. Debe poder actualizarse cuando cambie el archivo de datos sin que yo vuelva a pedirlo. Usa títulos que digan qué se ve y marca claramente los periodos incompletos.</pre></div>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">actualizar-dashboard.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Actualiza el dashboard con los datos nuevos y dime qué cambió respecto a la versión anterior.</pre></div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Pregunta siempre: ¿de dónde salen estos datos y quién los actualiza? Un tablero bonito con datos viejos es peor que no tener tablero.</p></div></div>
+  </section>
+
+  <section id="e7">
+   <div class="eyebrow">Ejercicio 7</div>
+   <h2>Anima un hallazgo con Claude Motion</h2>
+   <p class="lead">Con el archivo <b>Datos_Helados_Sur_por_Mes.csv</b> animamos el hallazgo de la sesión 6: las ventas de Helados en el Sur caen de junio a septiembre.</p>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">animar-hallazgo.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Crea una animación de 15 segundos para explicar este hallazgo: las ventas de Helados en la región Sur cayeron de $47.462 en junio a $30.820 en septiembre, un 35% menos. Estructura: título, un gráfico de línea que se dibuja mes a mes con los datos del archivo, la cifra final destacada y un cierre con la recomendación “revisar la promoción de Helados en el Sur”. Usa un estilo sobrio en azul oscuro y ámbar, y deja el texto grande y legible.</pre></div>
+   <div class="bit"><div class="ic">📌</div><div><div class="lb">Nota</div><p>Comprueba que la animación muestre exactamente las cifras del archivo. Una animación bonita con un dato incorrecto es una mentira bien presentada.</p></div></div>
+  </section>
+
+  <section id="e8">
+   <div class="eyebrow">Ejercicio 8</div>
+   <h2>Diseña tu cadena de trabajo</h2>
+   <p class="lead">Abre <b>Hoja_Flujo_Semanal.xlsx</b>. La segunda pestaña trae un ejemplo resuelto de la reunión semanal. Completa la primera con tu propio flujo.</p>
+   <div class="code"><div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="lbl">disenar-flujo.txt</span><button class="copy" onclick="cp(this)">Copiar</button></div><pre>Voy a describirte cómo trabajo cada semana. Ayúdame a completar mi hoja de flujo semanal: qué pasos hago, qué dispara cada uno, cuáles se pueden hacer con un skill, con Cowork, con Claude en Chrome, con Outlook, con un proyecto o con un agente, y cuáles debo hacer yo con mi criterio. Para cada paso indica quién verifica y cómo, y qué pasa si falla. No automatices los pasos que requieren una decisión mía.</pre></div>
+   <div class="callout dark"><div class="ic">🧭</div><p><b>Regla de diseño:</b> automatiza lo repetitivo, verifica lo importante y deja para ti lo que requiere criterio. Cada paso automático debe tener un punto de revisión.</p></div>
+  </section>
+
+  <section id="problemas">
+   <div class="eyebrow">Si algo falla</div>
+   <h2>Qué hacer cuando algo no sale</h2>
+   <div class="tw">
+    <table>
+     <tr><th>Problema</th><th>Qué hacer</th><th>Evitar</th></tr>
+     <tr><td>No veo la opción de proyectos</td><td>Pega tus instrucciones al inicio de cada chat.</td><td>Repetir todo el contexto a mano</td></tr>
+     <tr><td>Los sub-agentes no trabajan en paralelo</td><td>Haz las tres tareas por separado y pide a Claude que las integre.</td><td>Esperar sin avanzar</td></tr>
+     <tr><td>Un agente inventa una cifra</td><td>Pide el archivo y la celda de donde sale. Si no puede, descártala.</td><td>Pasar el resultado al siguiente agente</td></tr>
+     <tr><td>El verificador aprueba todo</td><td>Revisa que sea independiente y que compare contra los archivos, no contra el resumen.</td><td>Un verificador que vio el trabajo</td></tr>
+     <tr><td>No tengo dashboards en vivo ni Motion</td><td>Sigue la demostración y usa el dashboard de la sesión 6.</td><td>Quedarte sin practicar</td></tr>
+     <tr><td>La animación muestra una cifra incorrecta</td><td>Corrígela con la cifra del archivo y verifica de nuevo.</td><td>Publicarla sin comprobarla</td></tr>
+    </table>
+   </div>
+  </section>
+
+  <section id="tarea">
+   <div class="eyebrow">Antes de la sesión 08</div>
+   <h2>Tu práctica de esta semana</h2>
+   <p class="lead">Prepara tu proyecto final: la sesión 8 es para construirlo.</p>
+   <div class="callout"><div class="ic">📌</div><p><b>Tarea:</b> elige el proceso de tu trabajo que vas a automatizar de principio a fin en el proyecto final. Entrega la <b>Hoja de flujo semanal</b> completa, un párrafo con el objetivo (qué quieres lograr y cuánto tiempo esperas ahorrar), la lista de herramientas que usarás y cómo vas a verificar cada resultado.</p></div>
+   <div class="callout dark"><div class="ic">🧩</div><p><b>Sesión 08 · Proyecto final + tu plan a futuro</b> — presentas tu sistema funcionando y defines cómo seguir usando la IA después del taller.</p></div>
+  </section>
+
+  <footer><b>GrowUp</b> · growupcr.com · Sesión 07 de 08 · Contenido para uso interno del taller</footer>
+ </div>
+</div>
+
+<script>
+function cp(b){
+ var box=b.closest('.code'), pre=box.querySelector('pre'), t=pre.innerText, orig=b.textContent;
+ function done(msg,cls,ms){
+  b.textContent=msg; b.classList.remove('ok'); if(cls)b.classList.add(cls);
+  clearTimeout(b._t); b._t=setTimeout(function(){b.textContent=orig;b.classList.remove('ok');},ms||1800);
+ }
+ function legacy(){
+  try{
+   var ta=document.createElement('textarea');
+   ta.value=t; ta.setAttribute('readonly','');
+   ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+   document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0,t.length);
+   var ok=document.execCommand('copy'); document.body.removeChild(ta);
+   if(ok){done('Copiado ✓','ok');return true;}
+  }catch(e){}
+  return false;
+ }
+ if(navigator.clipboard&&window.isSecureContext){
+  navigator.clipboard.writeText(t).then(function(){done('Copiado ✓','ok');},function(){legacy();});
+ }else{ legacy(); }
+}
+</script>
+</body>
+</html>

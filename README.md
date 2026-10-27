@@ -4,11 +4,11 @@ Sitio del taller "Exprime la IA" de GrowUp, pensado para publicarse en GitHub Pa
 
 ## Contenido
 
-- `index.html` — página de inicio con el temario de las 8 sesiones (solo la Sesión 1 tiene guía disponible; el resto aparece como "Próximamente").
-- `sesion-01.html` a `sesion-05.html` — guías de las sesiones 1 a 5.
+- `index.html` — página de inicio con el temario de las 8 sesiones (las sesiones 1 a 7 tienen guía disponible; la 8 aparece como "Próximamente").
+- `sesion-01.html` a `sesion-07.html` — guías de las sesiones 1 a 7.
 - `practica/` — páginas de práctica de la Sesión 5 (directorio de proveedores y formulario), usadas con Claude en Chrome.
 
-A medida que se construyan las siguientes sesiones, se agregan como `sesion-02.html`, `sesion-03.html`, etc., y se actualiza `index.html` para des-bloquear cada tarjeta.
+A medida que se construyan las siguientes sesiones, se agregan como `sesion-08.html` y se actualiza `index.html` para des-bloquear la tarjeta.
 
 ## Cómo publicarlo en GitHub Pages
 
